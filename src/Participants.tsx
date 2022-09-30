@@ -35,7 +35,6 @@ export default function Participants (props: Props) {
     return (
         <div>
             <h3>A팀</h3>
-            <p>{props.teamA.win?"승리":"패배"}</p>
             <p>바론 {props.teamA.objectives.baron.kills}</p>
             <p>드래곤 {props.teamA.objectives.dragon.kills}</p>
             <p>타워 {props.teamA.objectives.tower.kills}</p>
@@ -43,7 +42,6 @@ export default function Participants (props: Props) {
             {teamA}
 
             <h3>B팀</h3>
-            <p>{props.teamB.win?"승리":"패배"}</p>
             <p>바론 {props.teamB.objectives.baron.kills}</p>
             <p>드래곤 {props.teamB.objectives.dragon.kills}</p>
             <p>타워 {props.teamB.objectives.tower.kills}</p>

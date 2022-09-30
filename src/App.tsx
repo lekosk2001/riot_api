@@ -1,11 +1,22 @@
-// import styled from "styled-components";
+import styled from "styled-components";
 import axios from "axios";
 import { useEffect,useState } from "react";
 import Form from "./Form";
-import Match from "./Match"
+import Matches from "./Matches"
+import GlobalStyle from "./GlobalStyle";
+import SummonerInfo from "./SummonerInfo";
+
+const Main = styled.main`
+	display: flex;
+	padding: 0px 40px;
+	gap: 20px;
+`
+const Aside = styled.aside`
+	width: 220px;
+`
 
 function App() {
-	const dataKey = "RGAPI-631bc0cf-5e03-4d8b-a6a4-20844a46f246"
+	const dataKey = "RGAPI-7ddfbf3a-c0d0-41b7-82b4-67579d7065c2"
 
 	// 스테이트
 	const [isLoading,setIsLoading] = useState(true);
@@ -14,29 +25,6 @@ function App() {
 	const [league,setLeague]=useState([{}]) as any;
 	const [matches,setMatches]=useState([]) as any;
 
-	// long 타입 날짜 변환
-	function longToDate(longTypeDate:number){
-		let date = new Date(longTypeDate);
-		let yyyy=date.getFullYear().toString();
-		let mm = (date.getMonth()+1).toString();
-		let dd = date.getDate().toString();
-		let Str = '';
-		Str += yyyy + '-' + (mm[1] ? mm : '0' + mm[0]) + '-' +(dd[1] ? dd : '0' + dd[0]);
-		return Str;
-	}
-
-	// 매치 데이터 컴포넌트 생성
-	const allMatches=[]
-	for (let i = 0; i < matches.length; i++) {
-		allMatches.push(
-			<Match
-				matchId={matches[i]}
-				dataKey={dataKey}
-				key={i}
-			/>
-		)
-	}
-	
 	// 마운트시, 소환사명과 key를 통해 puuid를 확인하여, 매치정보를 불러옴.
 	async function getData(소환사명:string,dataKey:string){
 		await axios.get('https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+소환사명+'?api_key='+dataKey).then(
@@ -62,12 +50,11 @@ function App() {
 				.catch((error) => {
 					console.log(error)
 				})
+			setIsLoading(false)
 		})
 		.catch((error) => {
 			console.log(error)
 		})
-
-		setIsLoading(false)
 	}
 
 	// 마운트 시
@@ -76,27 +63,27 @@ function App() {
 	}, [])
 
 	return (
-		<div className="App">
-			<Form/>
-			{isLoading?"Loading":
-				<div>
-					<p>id : {summonerData.id}</p>
-					<p>accountId : {summonerData.accountId}</p>
-					<p>puuid : {summonerData.puuid}</p>
-					<p>소환사명 : {summonerData.name}</p>
-					<p>profileIconId : {summonerData.profileIconId}</p>
-					<p>프로필 수정일 : {longToDate(summonerData.revisionDate)}</p>
-					<p>소환사레벨 : {summonerData.summonerLevel}</p>
-
-					{leagueIsLoading?"Loading":
-						<div>
-							<p>솔로랭크 : {league[0].tier} {league[0].rank} </p>
-							<p>자유랭크 : {league[1].tier} {league[1].rank} </p>
-						</div>
-					}
-					
-					{allMatches}
-				</div>
+		<div>
+			<GlobalStyle />
+			<Form
+				submit={getData}
+				dataKey={dataKey}
+			/>
+			{isLoading?<Main>Loading</Main>:
+				<Main>
+					<Aside/>
+					<div>
+						<SummonerInfo
+							summonerData={summonerData}
+							leagueIsLoading={leagueIsLoading}
+							league={league}
+						/>
+						<Matches
+							matches={matches}
+							datakey={dataKey}
+						/>
+					</div>
+				</Main>
 			}
 		</div>
 	);

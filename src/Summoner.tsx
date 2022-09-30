@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect,useState,MouseEvent } from "react";
+import { useState,MouseEvent } from "react";
 
 type CustomMouseEvent = MouseEvent<HTMLElement>
 
@@ -35,11 +35,6 @@ export default function Summoner (props: Props) {
             })
         }
 	}
-
-    // 마운트 시
-	useEffect(() => {
-		// getSummonerData(summoner.summonerId,dataKey)
-	},[])
 
     return (
         <div key={summoner.participantId} onMouseOver={getSummonerData}>
