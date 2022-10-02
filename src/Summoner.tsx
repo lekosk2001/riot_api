@@ -39,20 +39,20 @@ export default function Summoner (props: Props) {
     return (
         <div key={summoner.participantId} onMouseOver={getSummonerData}>
             <h4>{summoner.summonerName} {summoner.individualPosition==="Invalid"?"":" : "+summoner.individualPosition}</h4>
-            <p>{summoner.championName}│Lv.{summoner.champLevel}</p>
+            {/* <p>{summoner.championName}│Lv.{summoner.champLevel}</p>
             <p>{summoner.kills} / {summoner.deaths} / {summoner.assists} ({kda}:1)</p>
             <p>챔피언에게 가한 피해량 : {summoner.totalDamageDealtToChampions}</p>
             <p>CS : {summoner.totalMinionsKilled}</p>
             <div>
                 <p>아이템 : {summoner.item0} │ {summoner.item1} │ {summoner.item2} │ {summoner.item3} │ {summoner.item4} │ {summoner.item5} │ {summoner.item6}</p>
-            </div>
+            </div> */}
             
-            {isLoading?
+            {/* {isLoading?
                 <button onClick={getSummonerData}>랭크보기</button>:
                     <div>
-                        {summonerLeagueData.length===0?"랭크없음":summonerLeagueData}
+                        {summonerLeagueData.length===0?<p>랭크없음</p>:summonerLeagueData}
                     </div>
-                }
+                } */}
         </div>
     )
 }

@@ -2,9 +2,11 @@ import axios from "axios";
 import { useEffect,useState } from "react";
 import Participants from './Participants'
 import styled from "styled-components";
+import SummonerDesc from "./SummonerDesc";
 
-const MatchStyle = styled.div<{ win:any }>`
-    max-width: 390px;
+const MatchStyle = styled.div<{ win:boolean }>`
+    width: 390px;
+    height: 390px;
     background-color: ${props => props.win?"#ecf2ff":"#fdecee"};
     padding: 30px;
     border-radius: 10px;
@@ -34,21 +36,33 @@ const MatchStyle = styled.div<{ win:any }>`
     .matchInfo_down{
         display: flex;
         gap:10px;
+        
+        & p:first-child{
+            font-weight: 800;
+        }
     }
-    & p:first-child{
-        font-weight: 800;
+
+    .matchDesc{
+        display: flex;
+        gap: 25px;
     }
 `
 
 type Props = {
     matchId:string;
     dataKey:string;
+    summonerData:any;
+    allRunesData:any;
+    allSummonersData:any;
 }
 
 export default function Match (props: Props) {
-    
 	const [isLoading,setIsLoading] = useState(true);
-	const [info,setInfo] = useState([] as any);
+	const [info,setInfo] = useState() as any;
+    const [summonerDesc,setSummonerDesc] = useState() as any;
+    const [runeIcons,setRuneIcons] = useState() as any;
+    const [spellIcon1,setSpellIcon1]= useState() as any;
+    const [spellIcon2,setSpellIcon2]= useState() as any;
 
 // long 타입 날짜 변환
 	function longToDate(longTypeDate:number){
@@ -80,6 +94,26 @@ export default function Match (props: Props) {
                     data:{ info }
                 }= response
                 setInfo(info)
+
+                const participant = info.participants.filter((participant:any)=>props.summonerData.puuid===participant.puuid)
+                setSummonerDesc(participant[0])
+
+                const runeIcon1 = props.allRunesData.filter((rune:any)=>rune.id===participant[0].perks.styles[0].style)
+                const runeIcon2 = props.allRunesData.filter((rune:any)=>rune.id===participant[0].perks.styles[1].style)
+                const runeIcon1Detail = runeIcon1[0].slots[0].runes.filter((rune:any)=>rune.id===participant[0].perks.styles[0].selections[0].perk)
+                setRuneIcons([runeIcon1Detail[0].icon,runeIcon2[0].icon])
+                
+                const spells =  props.allSummonersData
+                for (const spell in spells) {
+                    if (spells[spell].key.toString()===participant[0].summoner1Id.toString()) {
+                        const spell1 = spells[spell]
+                        setSpellIcon1(spell1.image.full)
+                    }
+                    if (spells[spell].key.toString()===participant[0].summoner2Id.toString()) {
+                        const spell2 = spells[spell]
+                        setSpellIcon2(spell2.image.full)
+                    }
+                }
 		})
 		setIsLoading(false)
 	}
@@ -89,12 +123,12 @@ export default function Match (props: Props) {
 	},[])
 
     return (
-        <MatchStyle key={props.matchId} win={isLoading?null:info.teams[0].win}>
+        <MatchStyle key={props.matchId} win={isLoading?null:summonerDesc.win}>
             {isLoading?"Loading":
                 <>
                     <div className="matchInfo">
                         <div className="matchInfo_up">
-                            <h2>{info.teams[0].win?"승리":"패배"}</h2>
+                            <h2>{summonerDesc.win?"승리":"패배"}</h2>
                             <p>{longToDate(info.gameCreation)}</p>
                         </div>
                         <div className="matchInfo_down">
@@ -102,13 +136,22 @@ export default function Match (props: Props) {
                             <p> {convertHMS(info.gameDuration)} </p>
                         </div>
                     </div>
+                    <div className="matchDesc">
+                        <SummonerDesc
+                            summonerDesc={summonerDesc}
+                            win={info.teams[0].win}
+                            runeIcons={runeIcons}
+                            spellIcon1={spellIcon1}
+                            spellIcon2={spellIcon2}
+                            />
+                        <Participants
+                            dataKey={props.dataKey}
+                            participants={info.participants}
+                            teamA={info.teams[0]}
+                            teamB={info.teams[1]}
+                        />
+                    </div>
 
-                    <Participants
-                        dataKey={props.dataKey}
-                        participants={info.participants}
-                        teamA={info.teams[0]}
-                        teamB={info.teams[1]}
-                    />
                 </>
 			}
         </MatchStyle>

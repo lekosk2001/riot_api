@@ -1,4 +1,9 @@
 import Summoner from './Summoner'
+import styled from 'styled-components'
+
+const ParticipantsStyle = styled.div`
+    
+`
 
 type Props = {
     participants:any;
@@ -33,20 +38,20 @@ export default function Participants (props: Props) {
     }
 
     return (
-        <div>
-            <h3>A팀</h3>
+        <ParticipantsStyle>
+            {/* <h3>A팀</h3>
             <p>바론 {props.teamA.objectives.baron.kills}</p>
             <p>드래곤 {props.teamA.objectives.dragon.kills}</p>
             <p>타워 {props.teamA.objectives.tower.kills}</p>
-            <p>챔피언 {props.teamA.objectives.champion.kills}</p>
+            <p>챔피언 {props.teamA.objectives.champion.kills}</p> */}
             {teamA}
 
-            <h3>B팀</h3>
+            {/* <h3>B팀</h3>
             <p>바론 {props.teamB.objectives.baron.kills}</p>
             <p>드래곤 {props.teamB.objectives.dragon.kills}</p>
             <p>타워 {props.teamB.objectives.tower.kills}</p>
-            <p>챔피언 {props.teamB.objectives.champion.kills}</p>
+            <p>챔피언 {props.teamB.objectives.champion.kills}</p> */}
             {teamB}
-        </div>
+        </ParticipantsStyle>
     )
 }

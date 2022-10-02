@@ -16,7 +16,8 @@ const Aside = styled.aside`
 `
 
 function App() {
-	const dataKey = "RGAPI-7ddfbf3a-c0d0-41b7-82b4-67579d7065c2"
+	const dataKey = "RGAPI-8666ca75-a87e-42ee-93e2-b97c2dadd160"
+	const 소환사명= "레코스크"
 
 	// 스테이트
 	const [isLoading,setIsLoading] = useState(true);
@@ -27,6 +28,7 @@ function App() {
 
 	// 마운트시, 소환사명과 key를 통해 puuid를 확인하여, 매치정보를 불러옴.
 	async function getData(소환사명:string,dataKey:string){
+		//서머너 데이터
 		await axios.get('https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/'+소환사명+'?api_key='+dataKey).then(
 			(response) => {
 				const summonerData = response.data;
@@ -59,7 +61,7 @@ function App() {
 
 	// 마운트 시
 	useEffect(() => {
-		getData("레코스크",dataKey)
+		getData(소환사명,dataKey)
 	}, [])
 
 	return (
@@ -79,6 +81,7 @@ function App() {
 							league={league}
 						/>
 						<Matches
+							summonerData={summonerData}
 							matches={matches}
 							datakey={dataKey}
 						/>
