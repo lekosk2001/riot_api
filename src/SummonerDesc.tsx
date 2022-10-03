@@ -56,8 +56,24 @@ const SummonerDescStyle = styled.div<{ win:boolean }>`
         grid-column-start: 1;
         grid-column-end: 5;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap:1px;
+
+        .kda{
+        display: flex;
+        gap: 8px;
+        align-items: center;
+
+        h3{
+            font-size: 20px;
+        }
+        }
+        .kdaDesc{
+            display: flex;
+            gap:2px;
+        }
     }
 `
 
@@ -67,13 +83,17 @@ type Props = {
     runeIcons:any;
     spellIcon1:any;
     spellIcon2:any;
+    team:any;
 }
 
 export default function SummonerDesc(props: Props) {
-    const Desc = props.summonerDesc
+    const desc = props.summonerDesc
+    const team = props.team
     const spellIcon1 = props.spellIcon1
     const spellIcon2 = props.spellIcon2
     const runeIcons = props.runeIcons
+    const kda = ((desc.kills+desc.assists)/desc.deaths).toFixed(2);
+    const killRate = (((desc.kills+desc.assists)/team.objectives.champion.kills)*100).toFixed();
 
     function itemImgCheck(imgCode:any){
         if(imgCode===0){
@@ -82,21 +102,26 @@ export default function SummonerDesc(props: Props) {
         else return (<img className='item' src={"https://ddragon.leagueoflegends.com/cdn/12.18.1/img/item/"+imgCode+".png"} alt={imgCode} />)
     }
 
+
+    console.log(team)
     return (
         <SummonerDescStyle win={props.win}>
-            <img className='championImg' src={"https://ddragon.leagueoflegends.com/cdn/12.18.1/img/champion/"+Desc.championName+".png"} alt={Desc.championName} />
-            <img className='spell' src={"https://ddragon.leagueoflegends.com/cdn/12.18.1/img/spell/"+spellIcon1} alt={Desc.summoner1Id} />
-            <img className='spell' src={"https://ddragon.leagueoflegends.com/cdn/12.18.1/img/spell/"+spellIcon2} alt={Desc.summoner2Id} />
-            <div className='perkBox'><img src={"https://ddragon.leagueoflegends.com/cdn/img/"+runeIcons[0]} alt={Desc.perks.styles[0].selections[0].perk} /></div>
-            <div className='perkBoxSmall'><img src={"https://ddragon.leagueoflegends.com/cdn/img/"+runeIcons[1]} alt={Desc.perks.styles[1].style} /></div>
-            <div className='kdaBox'>kda</div>
-            {itemImgCheck(Desc.item0)}
-            {itemImgCheck(Desc.item1)}
-            {itemImgCheck(Desc.item2)}
-            {itemImgCheck(Desc.item6)}
-            {itemImgCheck(Desc.item3)}
-            {itemImgCheck(Desc.item4)}
-            {itemImgCheck(Desc.item5)}
+            <img className='championImg' src={"https://ddragon.leagueoflegends.com/cdn/12.18.1/img/champion/"+desc.championName+".png"} alt={desc.championName} />
+            <img className='spell' src={"https://ddragon.leagueoflegends.com/cdn/12.18.1/img/spell/"+spellIcon1} alt={desc.summoner1Id} />
+            <img className='spell' src={"https://ddragon.leagueoflegends.com/cdn/12.18.1/img/spell/"+spellIcon2} alt={desc.summoner2Id} />
+            <div className='perkBox'><img src={"https://ddragon.leagueoflegends.com/cdn/img/"+runeIcons[0]} alt={desc.perks.styles[0].selections[0].perk} /></div>
+            <div className='perkBoxSmall'><img src={"https://ddragon.leagueoflegends.com/cdn/img/"+runeIcons[1]} alt={desc.perks.styles[1].style} /></div>
+            <div className='kdaBox'>
+                <div className='kda'><h3>{desc.kills}</h3> <p>/</p> <h3 className='color_red'>{desc.deaths}</h3> <p>/</p> <h3>{desc.assists}</h3></div>
+                <div className='kdaDesc'><p className='bold'>{kda}점</p><p>(킬관여 {killRate}%)</p></div>
+            </div>
+            {itemImgCheck(desc.item0)}
+            {itemImgCheck(desc.item1)}
+            {itemImgCheck(desc.item2)}
+            {itemImgCheck(desc.item6)}
+            {itemImgCheck(desc.item3)}
+            {itemImgCheck(desc.item4)}
+            {itemImgCheck(desc.item5)}
         </SummonerDescStyle>
     )
 }

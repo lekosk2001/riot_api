@@ -139,10 +139,11 @@ export default function Match (props: Props) {
                     <div className="matchDesc">
                         <SummonerDesc
                             summonerDesc={summonerDesc}
-                            win={info.teams[0].win}
+                            win={summonerDesc.win}
                             runeIcons={runeIcons}
                             spellIcon1={spellIcon1}
                             spellIcon2={spellIcon2}
+                            team={summonerDesc.win===info.teams[0].win?info.teams[0]:info.teams[1]}
                             />
                         <Participants
                             dataKey={props.dataKey}

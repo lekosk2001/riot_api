@@ -14,6 +14,14 @@ const GlobalStyle = createGlobalStyle`
 	h1{
 		font-size: 72px;
 	}
+
+	.bold{
+		font-weight: 800;
+	}
+	
+	.color_red{
+		color:#e84057;
+	}
 `
 
 export default GlobalStyle;
