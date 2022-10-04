@@ -5,10 +5,10 @@ import styled from "styled-components";
 import SummonerDesc from "./SummonerDesc";
 
 const MatchStyle = styled.div<{ win:boolean }>`
-    width: 390px;
-    height: 390px;
+    max-width: 390px;
     background-color: ${props => props.win?"#ecf2ff":"#fdecee"};
     padding: 30px;
+    padding-bottom: 40px;
     border-radius: 10px;
 
     h2{
@@ -45,6 +45,7 @@ const MatchStyle = styled.div<{ win:boolean }>`
     .matchDesc{
         display: flex;
         gap: 25px;
+        /* flex-wrap: wrap; */
     }
 `
 
@@ -146,6 +147,7 @@ export default function Match (props: Props) {
                             team={summonerDesc.win===info.teams[0].win?info.teams[0]:info.teams[1]}
                             />
                         <Participants
+                            summonerDesc={summonerDesc}
                             dataKey={props.dataKey}
                             participants={info.participants}
                             teamA={info.teams[0]}

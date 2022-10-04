@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import axios from "axios";
 import { useEffect,useState } from "react";
-import Form from "./Form";
+import Header from "./Header";
 import Matches from "./Matches"
 import GlobalStyle from "./GlobalStyle";
 import SummonerInfo from "./SummonerInfo";
@@ -10,13 +10,15 @@ const Main = styled.main`
 	display: flex;
 	padding: 0px 40px;
 	gap: 20px;
+	margin-top: 110px;
+	margin-bottom: 200px;
 `
 const Aside = styled.aside`
 	width: 220px;
 `
 
 function App() {
-	const dataKey = "RGAPI-8666ca75-a87e-42ee-93e2-b97c2dadd160"
+	const dataKey = "RGAPI-8f32017c-d212-4160-bc43-e5158e452a90"
 	const 소환사명= "레코스크"
 
 	// 스테이트
@@ -45,7 +47,7 @@ function App() {
 				})
 
 				//매치 데이터
-				axios.get("https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/"+summonerData.puuid+"/ids?start=0&count=5&api_key="+dataKey)
+				axios.get("https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/"+summonerData.puuid+"/ids?start=0&count=6&api_key="+dataKey)
 				.then((response) => {
 					setMatches(response.data)
 				})
@@ -67,7 +69,7 @@ function App() {
 	return (
 		<div>
 			<GlobalStyle />
-			<Form
+			<Header
 				submit={getData}
 				dataKey={dataKey}
 			/>

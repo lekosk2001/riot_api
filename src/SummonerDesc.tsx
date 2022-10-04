@@ -102,8 +102,6 @@ export default function SummonerDesc(props: Props) {
         else return (<img className='item' src={"https://ddragon.leagueoflegends.com/cdn/12.18.1/img/item/"+imgCode+".png"} alt={imgCode} />)
     }
 
-
-    console.log(team)
     return (
         <SummonerDescStyle win={props.win}>
             <img className='championImg' src={"https://ddragon.leagueoflegends.com/cdn/12.18.1/img/champion/"+desc.championName+".png"} alt={desc.championName} />

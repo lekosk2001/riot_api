@@ -1,4 +1,5 @@
 import axios from "axios";
+import styled from 'styled-components'
 import { useState,MouseEvent } from "react";
 
 type CustomMouseEvent = MouseEvent<HTMLElement>
@@ -6,7 +7,43 @@ type CustomMouseEvent = MouseEvent<HTMLElement>
 type Props = {
     summoner:any;
     dataKey:string;
+    searchedSummoner:any;
 }
+
+const SummonerStyle = styled.div<{ 일치:boolean }>`
+    display: flex;
+    gap: 5px;
+    flex-wrap: nowrap;
+    margin-bottom: 5px;
+
+    p{
+        font-size: 12px;
+    }
+
+    .summonerName{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: ${props => props.일치?"#000":"hsl(0,0%,40%)"};
+        max-width: 70px;
+        line-height: 20px;
+        font-weight:${props => props.일치?"600":null};;
+    }
+
+    .championImgBox{
+        width: 20px;
+        height: 20px;
+        overflow: hidden;
+        background: #000;
+        border-radius: ${props => props.일치?"10px":null};
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+`
 
 export default function Summoner (props: Props) {
 
@@ -37,8 +74,14 @@ export default function Summoner (props: Props) {
 	}
 
     return (
-        <div key={summoner.participantId} onMouseOver={getSummonerData}>
-            <h4>{summoner.summonerName} {summoner.individualPosition==="Invalid"?"":" : "+summoner.individualPosition}</h4>
+        <SummonerStyle key={summoner.participantId} onMouseOver={getSummonerData} 일치={props.searchedSummoner.summonerName===summoner.summonerName}>
+            <div className="championImgBox">
+                <img className='championImg'
+                    src={summoner.championName==="FiddleSticks"?"https://ddragon.leagueoflegends.com/cdn/12.18.1/img/champion/Fiddlesticks.png":"https://ddragon.leagueoflegends.com/cdn/12.18.1/img/champion/"+summoner.championName+".png"} // 피들스틱 임시 수정.
+                    alt={summoner.championName} />
+            </div>
+            <p className="summonerName">{summoner.summonerName}</p>
+            {/* {summoner.individualPosition==="Invalid"?"":" : "+summoner.individualPosition} */}
             {/* <p>{summoner.championName}│Lv.{summoner.champLevel}</p>
             <p>{summoner.kills} / {summoner.deaths} / {summoner.assists} ({kda}:1)</p>
             <p>챔피언에게 가한 피해량 : {summoner.totalDamageDealtToChampions}</p>
@@ -53,6 +96,6 @@ export default function Summoner (props: Props) {
                         {summonerLeagueData.length===0?<p>랭크없음</p>:summonerLeagueData}
                     </div>
                 } */}
-        </div>
+        </SummonerStyle>
     )
 }
