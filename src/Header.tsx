@@ -12,7 +12,7 @@ type Props = {
 const HeaderStyle = styled.header`
     width: 100%;
     top: 0px;
-    background-color: #fff;
+	background-color: hsl(0,0%,96%);
     z-index: 3;
     height: 110px;
     display: flex;

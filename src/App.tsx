@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import axios from "axios";
 import { useEffect,useState } from "react";
+import Aside from "./Aside"
 import Header from "./Header";
 import Matches from "./Matches"
 import GlobalStyle from "./GlobalStyle";
@@ -12,11 +13,12 @@ const Main = styled.main`
 	gap: 20px;
 	margin-top: 110px;
 	margin-bottom: 200px;
-`
-const Aside = styled.aside`
-	width: 220px;
-`
+	justify-content: center;
 
+	.matchData{
+		max-width: 1300px;
+	}
+`
 function App() {
 	const dataKey = "RGAPI-8f32017c-d212-4160-bc43-e5158e452a90"
 	const 소환사명= "레코스크"
@@ -75,8 +77,8 @@ function App() {
 			/>
 			{isLoading?<Main>Loading</Main>:
 				<Main>
-					<Aside/>
-					<div>
+					{/* <Aside/> */}
+					<div className="matchData">
 						<SummonerInfo
 							summonerData={summonerData}
 							leagueIsLoading={leagueIsLoading}

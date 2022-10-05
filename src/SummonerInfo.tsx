@@ -10,12 +10,34 @@ type Props = {
 const SummonerInfoStyle = styled.article`
 	display: flex;
 	flex-direction: column;
+
+    .profile{
+        display: flex;
+        gap: 10px;
+        line-height: 80px;
+        align-items: center;
+
+        .profileImgBox{
+            width: 80px;
+            height: 80px;
+            overflow: hidden;
+            background: #000;
+            border-radius: 10px;
+        }
+    }
+
 `
 
 export default function SummonerInfo (props: Props) {
     return (
         <SummonerInfoStyle>
-            <h1>{props.summonerData.name}</h1>
+            <div className='profile'>
+                <span className='profileImgBox'>
+                    <img src="" alt=""/>
+                </span>
+                <h1>{props.summonerData.name}</h1>
+            </div>
+
             {props.leagueIsLoading?"Loading":
                 <div>
                     <p>솔로랭크 : {props.league[0].tier} {props.league[0].rank} </p>

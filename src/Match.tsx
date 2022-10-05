@@ -6,22 +6,22 @@ import SummonerDesc from "./SummonerDesc";
 
 const MatchStyle = styled.div<{ win:boolean }>`
     max-width: 390px;
-    background-color: ${props => props.win?"#ecf2ff":"#fdecee"};
+    background-color: ${props => props.win?"var(--color-blue-bg)":"var(--color-red-bg)"};
     padding: 30px;
     padding-bottom: 40px;
     border-radius: 10px;
 
     h2{
-        color: ${props => props.win?"#5383e8":"#e84057"}; 
+        color: ${props => props.win?"var(--color-blue)":"var(--color-red)"}; 
     }
 
     p{
         font-size:14px;
-        color:hsl(0, 0%, 60%);
+        color:var(--color-60per);
     }
 
     .matchInfo{
-        border-bottom: 1px solid hsl(0, 0%, 80%);
+        border-bottom: 1px solid var(--color-80per);
         padding-bottom:10px;
         margin-bottom: 15px;
     }

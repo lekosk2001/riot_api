@@ -6,7 +6,7 @@ const ParticipantsStyle = styled.div<{ win:boolean ,teamA:boolean,teamB:boolean 
 
     .score{
         height: 40px;
-        background-color: ${props => props.win?"#dae6ff":"#f9cacf"}; 
+        background-color: ${props => props.win?"var(--color-blue-3bg)":"var(--color-red-3bg)"}; 
         border-radius: 5px;
         margin-bottom: 10px;
         display: flex;
@@ -25,11 +25,11 @@ const ParticipantsStyle = styled.div<{ win:boolean ,teamA:boolean,teamB:boolean 
         }
 
         .teamAwin{
-            color: ${props => props.teamA?"#5383e8":"#e84057"}; 
+            color: ${props => props.teamA?"var(--color-blue)":"var(--color-red)"}; 
         }
         
         .teamBwin{
-            color: ${props => props.teamB?"#5383e8":"#e84057"}; 
+            color: ${props => props.teamB?"var(--color-blue)":"var(--color-red)"}; 
         }
     }
 

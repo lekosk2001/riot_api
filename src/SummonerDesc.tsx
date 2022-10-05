@@ -9,7 +9,7 @@ const SummonerDescStyle = styled.div<{ win:boolean }>`
 
     .championImg{
         border-radius: 5px;
-        background-color: hsl(0, 0%, 90%);
+        background-color: var(--color-90per);
         grid-column-start: 1;
         grid-column-end: 3;
         grid-row-start: 1;
@@ -48,7 +48,7 @@ const SummonerDescStyle = styled.div<{ win:boolean }>`
     }
 
     .blackPerk{
-        background-color: ${props => props.win?"#cadaff":"#f9cacf"}; 
+        background-color: ${props => props.win?"var(--color-blue-3bg)":"var(--color-red-3bg)"}; 
         border-radius: 5px;        
     }
 

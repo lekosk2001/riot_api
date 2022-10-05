@@ -24,7 +24,7 @@ const SummonerStyle = styled.div<{ 일치:boolean }>`
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        color: ${props => props.일치?"#000":"hsl(0,0%,40%)"};
+        color: ${props => props.일치?"#000":"var(--color-40per)"};
         max-width: 70px;
         line-height: 20px;
         font-weight:${props => props.일치?"600":null};;
