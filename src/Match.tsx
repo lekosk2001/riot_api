@@ -1,10 +1,10 @@
 import axios from "axios";
-import { useEffect,useState } from "react";
+import {useEffect,useState } from "react";
 import Participants from './Participants'
 import styled from "styled-components";
 import SummonerDesc from "./SummonerDesc";
 
-const MatchStyle = styled.div<{ win:boolean }>`
+const MatchStyle = styled.li<{ win:boolean }>`
     max-width: 390px;
     background-color: ${props => props.win?"var(--color-blue-bg)":"var(--color-red-bg)"};
     padding: 30px;

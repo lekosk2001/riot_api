@@ -23,6 +23,21 @@ const GlobalStyle = createGlobalStyle`
 		background-color: hsl(0,0%,96%);
 	};
 
+	input{
+		margin: 0px;
+		padding: 0px;
+	}
+
+	ul, li{
+		padding: 0px;
+		margin: 0px;
+		list-style: none;
+	}
+
+	button{
+		border: 0px;
+	}
+
 	h1,h2,h3,h4,h5,h6,p{
 		margin: 0px;
 		padding: 0px;

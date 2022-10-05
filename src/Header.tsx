@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+
 
 interface Name {
     target: {value:string}
@@ -18,6 +22,13 @@ const HeaderStyle = styled.header`
     display: flex;
     position: fixed;
     gap: 20px;
+    align-items: center;
+    
+    /* transition: 0.2s ease;
+
+    &:hover{
+        background-color: white;
+    } */
 
     .logo{
         margin-left: 40px;
@@ -33,17 +44,25 @@ const HeaderStyle = styled.header`
         margin-right: 40px;
         display: flex;    
         align-items: center;
+        border-radius: 25px;
+        background-color: var(--color-90per);
+        height: 50px;
         gap:10px;
+        padding: 0px 20px;
 
         input{
             display: flex;
             width: 100%;
-            height: 50px;
+            height: 100%;
             border: 0px;
-            border-radius: 25px;
-            background-color: hsl(0, 0%, 90%);
-            padding: 0px 30px;
+            background-color: var(--color-90per);
+
+            &:focus{
+            outline: none;
         }
+        }
+
+
 
         button{
             font-size: 12px;
@@ -78,13 +97,14 @@ export default function Header (props: Props) {
         <HeaderStyle>
             <h2 className="logo">LGSP</h2>
             <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                name="name"
-                value={name}
-                onChange={handleChange}
-            />
-            <button type="submit">검색</button>
+                <FontAwesomeIcon icon={faMagnifyingGlass}/>
+                <input
+                    type="text"
+                    name="name"
+                    value={name}
+                    onChange={handleChange}
+                />
+                {/* <button type="submit">검색</button> */}
             </form>
         </HeaderStyle>
 

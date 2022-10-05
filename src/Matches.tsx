@@ -10,9 +10,52 @@ type Props = {
 }
 
 const MatchesStyle = styled.section`
-	display: flex;
-	gap: 20px;
-	flex-wrap: wrap;
+
+	ul{
+		display: flex;
+		gap: 20px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.sort{
+		display: flex;
+		gap: 10px;
+		margin-bottom: 20px;
+
+		button{
+			height: 40px;
+			border-radius: 5px;
+			background-color: var(--color-90per);
+			display:flex;
+			justify-content: center;
+			align-items: center;
+			padding: 0px 10px;
+			cursor: pointer;
+			transition: 0.2s ease;
+
+			p{
+				font-size: 14px;
+			}
+
+			&:hover{
+				background-color: var(--color-80per);
+			}
+		}
+
+		.active{
+			background-color: black;
+
+			p{
+				color: #fff;
+			}
+
+			&:hover{
+				background-color: black;
+			}
+		}
+
+	}
 `
 
 export default function Matches (props: Props) {
@@ -58,7 +101,15 @@ export default function Matches (props: Props) {
 
     return (
         <MatchesStyle>
-        {allMatches}
+			<div className="sort">
+				<button className="active"><p>전체</p></button>
+				<button><p>솔로랭크</p></button>
+				<button><p>자유랭크</p></button>
+			</div>
+
+			<ul>
+				{allMatches}
+			</ul>
         </MatchesStyle>
     )
 }
