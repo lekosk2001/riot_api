@@ -22,9 +22,15 @@ const Main = styled.main`
 const Footer = styled.footer`
 	padding: 0px 40px;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 200px;
+	height: 160px;
+
+	p{
+		font-size: 12px;
+		color:var(--color-60per);
+	}
 `
 
 function App() {
@@ -100,7 +106,10 @@ function App() {
 					</div>
 				</Main>
 			}
-			<Footer>푸터</Footer>
+			<Footer>
+				<p>© 2022 LGSP Games, Inc. All rights reserved.</p>
+				<p>LGSP Games are trademarks, service marks, and registered trademarks of LGSP Games, Inc.</p>
+			</Footer>
 		</>
 	);
 }
