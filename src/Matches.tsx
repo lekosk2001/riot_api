@@ -62,6 +62,7 @@ export default function Matches (props: Props) {
 
 	const [allRunesData,setAllRunesData]=useState() as any;
 	const [allSummonersData,setAllSummonersData]=useState() as any;
+	// const [matchType,setMatchType]=useState("") as any;
 
 	async function getMatchData(){
 		await axios.get('https://ddragon.leagueoflegends.com/cdn/12.18.1/data/ko_KR/runesReforged.json').then(
@@ -102,9 +103,15 @@ export default function Matches (props: Props) {
     return (
         <MatchesStyle>
 			<div className="sort">
-				<button className="active"><p>전체</p></button>
-				<button><p>솔로랭크</p></button>
-				<button><p>자유랭크</p></button>
+				<button
+					// onClick={setMatchType("")}
+					className="active"><p>전체</p></button>
+				<button
+					// onClick={setMatchType("ranked")}
+				><p>랭크</p></button>
+				<button
+					// onClick={setMatchType("normal")}
+				><p>일반</p></button>
 			</div>
 
 			<ul>

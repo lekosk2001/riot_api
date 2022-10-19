@@ -57,8 +57,8 @@ export default function SummonerInfo (props: Props) {
             {props.leagueIsLoading?"Loading":
                 <div className='profileInfo'>
                     <p>소환사레벨 : {props.summonerData.summonerLevel} </p>
-                    <p>솔로랭크 : {props.league[0].tier} {props.league[0].rank} </p>
-                    <p>자유랭크 : {props.league[1].tier} {props.league[1].rank} </p>
+                    <p>솔로랭크 : {props.league[0]?.tier} {props.league[0]?.rank} </p>
+                    <p>자유랭크 : {props.league[1]?.tier} {props.league[1]?.rank} </p>
                 </div>
             }
         </SummonerInfoStyle>

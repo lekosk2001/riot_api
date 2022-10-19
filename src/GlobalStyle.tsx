@@ -23,6 +23,11 @@ const GlobalStyle = createGlobalStyle`
 		background-color: hsl(0,0%,96%);
 	};
 
+	a{
+		text-decoration: none;
+		color: initial;
+	}
+
 	input{
 		margin: 0px;
 		padding: 0px;
@@ -35,7 +40,10 @@ const GlobalStyle = createGlobalStyle`
 	}
 
 	button{
+		background-color: initial;
 		border: 0px;
+		margin: 0px;
+		padding: 0px;
 	}
 
 	h1,h2,h3,h4,h5,h6,p{
