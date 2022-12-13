@@ -4,6 +4,7 @@
 ![02](https://user-images.githubusercontent.com/68801887/207212012-c6182148-7ca0-4996-80d7-9f9c24461694.png)
 
 라이엇 API https://developer.riotgames.com 를 활용하여 실제 이용자의 데이터를 검색할 수 있습니다.
+
 ※ API KEY의 발행 유효기간이 24시간인 관계로, 학습을 위하여 제작된 본 서비스는 웹상에 배포하고 있지 않습니다.
 
 ## 프로젝트 소개
