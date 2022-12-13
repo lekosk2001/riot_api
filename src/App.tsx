@@ -34,7 +34,7 @@ const Footer = styled.footer`
 `
 
 function App() {
-	const dataKey = "RGAPI-c8b8c615-24e8-4d16-bbe1-944cc7172822"
+	const dataKey = "RGAPI-83c4bd1b-3f95-4da7-ad95-aac244a29ecb"
 
 	// 스테이트
 	const [isLoading,setIsLoading] = useState(true);

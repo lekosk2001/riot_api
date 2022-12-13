@@ -102,7 +102,7 @@ export default function Matches (props: Props) {
 
     return (
         <MatchesStyle>
-			<div className="sort">
+			{/* <div className="sort">
 				<button
 					// onClick={setMatchType("")}
 					className="active"><p>전체</p></button>
@@ -112,7 +112,7 @@ export default function Matches (props: Props) {
 				<button
 					// onClick={setMatchType("normal")}
 				><p>일반</p></button>
-			</div>
+			</div> */}
 
 			<ul>
 				{allMatches}
