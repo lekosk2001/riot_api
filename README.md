@@ -13,6 +13,5 @@ Typescript를 활용한 리그 오브 레전드 전적검색 어플리케이션.
 ## 적용기술
 - React
 - Typescript
-- React-router-dom
 - Styled-Components
 - Axios
